@@ -17,18 +17,36 @@ public class RepeatedCubeVectorFieldBehaviour : FieldBehaviour
 	#endregion
 
 	#region FieldBehaviour
-	public override IVectorField Field { get { return field; } }
+	public override IVectorField Field
+	{
+		get
+		{
+			if (field == null) GenerateField();
+			return field;
+		}
+	}
 	#endregion
 
 	#region Unity methods
 
 	void OnEnable()
 	{
-		field = new RepeatedCubeVectorField(Intensity, Dimension);
+		GenerateField();
 	}
 
 	void OnDisable()
-	{}
+	{
+		field = null;
+	}
+
+	#endregion
+
+	#region Field generation
+
+	private void GenerateField()
+	{
+		field = new RepeatedCubeVectorField(Intensity, Dimension);	
+	}
 
 	#endregion
 }
