@@ -18,6 +18,13 @@ namespace Alat
 			vector.y = 0f;
 			return vector;
 		}
+
+		public static Vector3 RandomSpherical()
+		{
+			float polarAngle = Random.Range(0f, Mathf.Rad2Deg * (2 * Mathf.PI));
+			float azimuthAngle = Mathf.Rad2Deg * Mathf.Acos(Random.Range(-1f, 1f));
+			return Coordinates.SphericalToCartesian(1f, polarAngle, azimuthAngle);
+		}
 		
 		public static Vector2 RandomRotatedUnitVector2()
 		{
